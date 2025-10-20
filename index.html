@@ -476,47 +476,24 @@ if (document.readyState === 'loading') {
                             </div>
                             <div class="nerves_item flex flex-col">
                                 <div class="nerves_item-img relative z-2 flex-grow flex flex-col aspect-video">
-                                    <video 
-                                        id="DevVideo"
-                                        loop 
-                                        playsinline
-                                        class="w-full grow object-cover"
-                                        width="1920" 
-                                        height="1080">
-                                        <source src="_astro/video/Developer_Coding_Video_Generated.mp4" type="video/mp4">
-                                    </video>
-                                    
-                                    <!-- Play Button - Guaranteed Visible -->
-                                    <button 
-                                        id="playdBtn"
-                                        style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1000; background: rgba(0,0,0,0.5); border: 3px solid white; border-radius: 50%; padding: 20px; cursor: pointer; display: block;">
-                                        <img src="_astro/svgs/play-button.svg" alt="Play" style="width: 80px; height: 80px; display: block;">
-                                    </button>
-                                </div>
+        <div class="youtube-player" data-id="wP2-MMjHZ4Q" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; cursor: pointer;">
+            <!-- Thumbnail Image -->
+            <img 
+                src="https://i.ytimg.com/vi/wP2-MMjHZ4Q/maxresdefault.jpg" 
+                alt="Custom SLM: Personalized AI Assistant"
+                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;"
+                loading="lazy">
+            
+            <!-- Play Button Overlay -->
+            <button 
+                class="play-overlay"
+                style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 10; background: rgba(0,0,0,0.5); border: 3px solid white; border-radius: 50%; padding: 20px; cursor: pointer; transition: all 0.3s;">
+                <img src="_astro/svgs/play-button.svg" alt="Play" style="width: 80px; height: 80px; display: block;">
+            </button>
+        </div>
+    </div>
+
                                 <script>
-                                (function() {
-                                    const video = document.getElementById('DevVideo');
-                                    const playBtn = document.getElementById('playdBtn');
-                                    
-                                    if (video && playBtn) {
-                                        // Click play button to start
-                                        playBtn.onclick = function(e) {
-                                            e.stopPropagation();
-                                            video.play();
-                                            playBtn.style.display = 'none';
-                                        };
-                                        
-                                        // Click video to pause and show button
-                                        video.onclick = function(e) {
-                                            e.stopPropagation();
-                                            if (!video.paused) {
-                                                video.pause();
-                                                playBtn.style.display = 'block';
-                                            }
-                                        };
-                                    }
-                                })();
-                                </script>
                                 <div class="pl-44 py-50 pr-100 relative z-2 grid grid-cols-3 gap-30 l:flex l:flex-col l:pl-45 l:py-25 l:gap-20 s:py-35 s:max-w-320 s:pr-0">
     <div>
         <h3 data-module="TextAnimation" class="_35 sm_27 font-medium mb-15">
@@ -1940,4 +1917,5 @@ if (document.readyState === 'loading') {
         <script type="module" src="_astro/Layout.astro_astro_type_script_index_0_lang.DqdvXA6r.js"></script>
     </body>
 </html>
+
 
