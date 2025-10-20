@@ -411,47 +411,67 @@ if (document.readyState === 'loading') {
                              <div class="nerves_item flex flex-col">
                                 <!-- Your video HTML here -->
                                 <div class="nerves_item-img relative z-2 flex-grow flex flex-col aspect-video">
-                                    <video 
-                                        id="sahayakVideo"
-                                        loop 
-                                        playsinline
-                                        class="w-full grow object-cover"
-                                        width="1920" 
-                                        height="1080">
-                                        <source src="_astro/video/Teacher_s_Phone_Panel_Video_Generation.mp4" type="video/mp4">
-                                    </video>
-                                    
-                                    <!-- Play Button - Guaranteed Visible -->
-                                    <button 
-                                        id="playsBtn"
-                                        style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1000; background: rgba(0,0,0,0.5); border: 3px solid white; border-radius: 50%; padding: 20px; cursor: pointer; display: block;">
-                                        <img src="_astro/svgs/play-button.svg" alt="Play" style="width: 80px; height: 80px; display: block;">
-                                    </button>
-                                </div>
+        <div class="youtube-player" data-id="nqXFR_kVpaQ" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; cursor: pointer;">
+            <!-- Thumbnail Image -->
+            <img 
+                src="https://i.ytimg.com/vi/nqXFR_kVpaQ/maxresdefault.jpg" 
+                alt="Saahayak"
+                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;"
+                loading="lazy">
+            
+            <!-- Play Button Overlay -->
+            <button 
+                class="play-overlay"
+                style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 10; background: rgba(0,0,0,0.5); border: 3px solid white; border-radius: 50%; padding: 20px; cursor: pointer; transition: all 0.3s;">
+                <img src="_astro/svgs/play-button.svg" alt="Play" style="width: 80px; height: 80px; display: block;">
+            </button>
+        </div>
+    </div>
+
                                 <script>
-                                (function() {
-                                    const video = document.getElementById('sahayakVideo');
-                                    const playBtn = document.getElementById('playsBtn');
-                                    
-                                    if (video && playBtn) {
-                                        // Click play button to start
-                                        playBtn.onclick = function(e) {
-                                            e.stopPropagation();
-                                            video.play();
-                                            playBtn.style.display = 'none';
-                                        };
-                                        
-                                        // Click video to pause and show button
-                                        video.onclick = function(e) {
-                                            e.stopPropagation();
-                                            if (!video.paused) {
-                                                video.pause();
-                                                playBtn.style.display = 'block';
-                                            }
-                                        };
-                                    }
-                                })();
-                                </script>
+// Lightweight YouTube Embed Handler
+function labnolIframe(div) {
+    const iframe = document.createElement('iframe');
+    iframe.setAttribute('src', `https://www.youtube.com/embed/${div.dataset.id}?autoplay=1&playsinline=1`);
+    iframe.setAttribute('frameborder', '0');
+    iframe.setAttribute('allowfullscreen', '1');
+    iframe.setAttribute('allow', 'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture');
+    iframe.style.cssText = 'position: absolute; top: 0; left: 0; width: 100%; height: 100%;';
+    div.innerHTML = '';
+    div.appendChild(iframe);
+}
+
+function initYouTubeVideos() {
+    const players = document.querySelectorAll('.youtube-player');
+    
+    players.forEach(player => {
+        const videoId = player.dataset.id;
+        const playButton = player.querySelector('.play-overlay');
+        
+        // Load video on click
+        player.addEventListener('click', function() {
+            labnolIframe(this);
+        });
+        
+        // Hover effect
+        if (playButton) {
+            player.addEventListener('mouseenter', () => {
+                playButton.style.transform = 'translate(-50%, -50%) scale(1.1)';
+            });
+            player.addEventListener('mouseleave', () => {
+                playButton.style.transform = 'translate(-50%, -50%) scale(1)';
+            });
+        }
+    });
+}
+
+// Initialize when DOM is ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initYouTubeVideos);
+} else {
+    initYouTubeVideos();
+}
+</script>
                                 <div class="pl-44 py-50 pr-100 relative z-2 grid grid-cols-3 gap-30 l:flex l:flex-col l:pl-45 l:py-25 l:gap-20 s:py-35 s:max-w-320 s:pr-0">
     <div>
         <h3 data-module="TextAnimation" class="_35 sm_27 font-medium mb-15">
@@ -1961,6 +1981,7 @@ if (document.readyState === 'loading') {
         <script type="module" src="_astro/Layout.astro_astro_type_script_index_0_lang.DqdvXA6r.js"></script>
     </body>
 </html>
+
 
 
 
