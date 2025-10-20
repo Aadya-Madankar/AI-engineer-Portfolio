@@ -475,12 +475,13 @@ if (document.readyState === 'loading') {
                                 </div>
                             </div>
                             <div class="nerves_item flex flex-col">
+                               <!-- Your video HTML here -->
                                 <div class="nerves_item-img relative z-2 flex-grow flex flex-col aspect-video">
-        <div class="youtube-player" data-id="wP2-MMjHZ4Q" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; cursor: pointer;">
+        <div class="youtube-player" data-id="wr4hhkwtCRo" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; cursor: pointer;">
             <!-- Thumbnail Image -->
             <img 
                 src="https://i.ytimg.com/vi/wP2-MMjHZ4Q/maxresdefault.jpg" 
-                alt="Custom SLM: Personalized AI Assistant"
+                alt="Custom SLM: Personalize AI Assistant"
                 style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;"
                 loading="lazy">
             
@@ -494,6 +495,49 @@ if (document.readyState === 'loading') {
     </div>
 
                                 <script>
+// Lightweight YouTube Embed Handler
+function labnolIframe(div) {
+    const iframe = document.createElement('iframe');
+    iframe.setAttribute('src', `https://www.youtube.com/embed/${div.dataset.id}?autoplay=1&playsinline=1`);
+    iframe.setAttribute('frameborder', '0');
+    iframe.setAttribute('allowfullscreen', '1');
+    iframe.setAttribute('allow', 'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture');
+    iframe.style.cssText = 'position: absolute; top: 0; left: 0; width: 100%; height: 100%;';
+    div.innerHTML = '';
+    div.appendChild(iframe);
+}
+
+function initYouTubeVideos() {
+    const players = document.querySelectorAll('.youtube-player');
+    
+    players.forEach(player => {
+        const videoId = player.dataset.id;
+        const playButton = player.querySelector('.play-overlay');
+        
+        // Load video on click
+        player.addEventListener('click', function() {
+            labnolIframe(this);
+        });
+        
+        // Hover effect
+        if (playButton) {
+            player.addEventListener('mouseenter', () => {
+                playButton.style.transform = 'translate(-50%, -50%) scale(1.1)';
+            });
+            player.addEventListener('mouseleave', () => {
+                playButton.style.transform = 'translate(-50%, -50%) scale(1)';
+            });
+        }
+    });
+}
+
+// Initialize when DOM is ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initYouTubeVideos);
+} else {
+    initYouTubeVideos();
+}
+</script>
                                 <div class="pl-44 py-50 pr-100 relative z-2 grid grid-cols-3 gap-30 l:flex l:flex-col l:pl-45 l:py-25 l:gap-20 s:py-35 s:max-w-320 s:pr-0">
     <div>
         <h3 data-module="TextAnimation" class="_35 sm_27 font-medium mb-15">
